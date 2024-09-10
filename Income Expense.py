@@ -1,8 +1,8 @@
 Balance        = 0
-Income         = []
-Income_source  = []
-Expense        = []
-Expense_source = []
+Incomes         = []
+Incomes_source  = []
+Expenses        = []
+Expenses_source = []
 
 while True:
     print("Total Balance ", Balance)
@@ -16,24 +16,30 @@ while True:
 
 
     if choice == 1:
-        income, Income_source = input("Enter Income and source seperate by space ").split()
-        income                = int(income)
-        Income_source         = str(Income_source)
-        Balance              += income
+        Income, source      = input("Enter Income and source seperate by space ").split(maxsplit=1)
+        Income              = int(Income)
+        source              = str(source)
+        Incomes.append(Income)
+        Incomes_source.append(source)
+        Balance            += Income
         print(Balance)
 
     elif choice == 2:
-        Expense, Expense_source = input("Enter Income and source seperate by space ").split()
+        Expense, source         = input("Enter Income and source seperate by space ").split(maxsplit=1)
         Expense                 = int(Expense)
-        Expense_source          = str(Expense_source)
+        source                  = str(source)
+        Expenses.append(Expense)
+        Expenses_source.append(source)
         Balance                -= Expense
         print(Balance)
 
     elif choice == 3:
-        print(Income," ", Income_source)
+        for i,(income,src) in enumerate(zip(Incomes, Incomes_source),start=1):
+            print(f"{i}. {income} B from {src}")
 
     elif choice == 4:
-        print(Expense," ", Expense_source)
+        for i,(expense,src) in enumerate(zip(Expenses, Expenses_source),start=1):
+            print(f"{i}. {expense} B from {src}")
 
     else:
         break
